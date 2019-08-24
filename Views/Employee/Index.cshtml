@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Asp.netCoreMVCCRUD.Models.EmployeeViewModel>;
+
+
+@{
+    ViewData["Title"] = "Employee List";
+}
+
+<h1>Employee List</h1>
+
+<h3>
+    <a asp-action="Add" class="btn btn-sm btn-primary">Create</a>
+</h3>
+
+<table class="table table-bordered table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Full Name</th>
+            <th>Employee Code</th>
+            <th>Position</th>
+            <th>Office Location</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model == null)
+        {
+        <tr>
+            <td colspan="7" class="text-center">No Model Data</td>
+        </tr>
+        }
+        else
+        {
+        @foreach(var employee in Model)
+            {
+        <tr>
+            <td>@employee.Id</td>
+            <td>@employee.FullName</td>
+            <td>@employee.EmployeeCode</td>
+            <td>@employee.Position</td>
+            <td>@employee.OfficeLocation</td>
+            <td>
+                <a class="btn btn-sm btn-success" asp-action="Edit" asp-route-id="@employee.Id">Edit</a>
+            </td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@employee.Id" method="post">
+                    <input type="submit" onclick="return confirm("Are you sure?");" class="btn btn-sm btn-danger" value="Delete" />
+                </form>
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>

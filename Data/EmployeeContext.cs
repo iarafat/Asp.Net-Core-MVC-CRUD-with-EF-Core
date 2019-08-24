@@ -1,4 +1,5 @@
-﻿using Asp.netCoreMVCCRUD.Models;
+﻿using Asp.netCoreMVCCRUD.Controllers;
+using Asp.netCoreMVCCRUD.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,10 @@ namespace Asp.netCoreMVCCRUD.Data
         }
 
         public DbSet<Employee> Employees { get; set; }
+
+        public static implicit operator EmployeeContext(EmployeeController v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
